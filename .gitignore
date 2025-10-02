@@ -2,6 +2,7 @@
 .thumbs.db
 **/node_modules
 **/dist
+.github
 
 # Log files
 npm-debug.log*

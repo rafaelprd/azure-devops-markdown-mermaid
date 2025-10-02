@@ -1,11 +1,11 @@
 {
     "manifestVersion": 1,
-    "id": "markdown-mermaid-renderer",
-    "version": "1.0.1",
-    "name": "Markdown Mermaid Renderer",
-    "description": "A Mermaid Renderer",
+    "id": "azure-devops-mermaid",
+    "version": "2.0.0",
+    "name": "Azure DevOps Mermaid",
+    "description": "Professional Mermaid diagram renderer with GitHub Flavored Markdown support for Azure DevOps",
     "public": true,
-    "publisher": "talisca",
+    "publisher": "jramos",
     "targets": [
         {
             "id": "Microsoft.VisualStudio.Services"
@@ -20,13 +20,18 @@
     "tags": [
         "mermaid",
         "diagrams",
-        "render",
         "markdown",
-        "preview"
+        "visualization",
+        "flowchart",
+        "sequence-diagram",
+        "gantt",
+        "renderer",
+        "gfm",
+        "tables"
     ],
     "repository": {
         "type": "git",
-        "uri": "https://github.com/rafaelprd/azure-devops-markdown-mermaid"
+        "uri": "https://github.com/javiramos1/azure-devops-mermaid"
     },
     "icons": {
         "default": "marketplace/logo.png"
@@ -35,7 +40,7 @@
         {
             "id": "mermaid-renderer",
             "type": "ms.vss-code-web.content-renderer",
-            "description": "Shows a mermaid renderer for .mmd files",
+            "description": "Renders Mermaid diagrams in Markdown files with full GFM support",
             "targets": [
                 "ms.vss-code-web.content-renderer-collection"
             ],

@@ -1,32 +1,37 @@
-import { Parser, HtmlRenderer } from "commonmark"
+import { marked } from "marked";
 import Mermaid from "mermaid";
 
 const mermaidViewer = (function () {
 	"use strict";
 	return {
 		renderContent: function (rawContent, options) {
-			// Converte o markdown para HTML
-			var reader = new Parser();
-			var writer = new HtmlRenderer();
-			var parsed = reader.parse(rawContent);
-			var resultHtml = writer.render(parsed);
+			// Configure marked to support GFM (GitHub Flavored Markdown)
+			marked.setOptions({
+				gfm: true,
+				breaks: true,
+			});
 
-			// Recupera todos os nós com gráficos mermaid
+			// Convert markdown to HTML with GFM support (including tables)
+			var resultHtml = marked.parse(rawContent);
+
+			// Get the container and inject the rendered HTML
 			var container = document.getElementById('md-mermaid-viewer');
-			container.innerHTML = resultHtml
+			container.innerHTML = resultHtml;
+			
+			// Find all mermaid code blocks
 			var mermaidParagraphs = container.querySelectorAll('pre > code.language-mermaid')
 
-			// Realiza o parse das strings de linguagem
+			// Parse the mermaid strings
 			var parser = new DOMParser();
 			mermaidParagraphs.forEach((p) => {
 				var parsed = parser.parseFromString(p.innerHTML, 'text/html')
 				p.innerHTML = parsed.documentElement.textContent
 
-				// Class que indicará o nó a ser renderizado
+				// Add class to indicate the node should be rendered
 				p.classList.add('mermaid')
 			})
 
-			// Gera os gráficos mermaid 
+			// Generate the mermaid diagrams
 			Mermaid.run()
 		}
 	};
